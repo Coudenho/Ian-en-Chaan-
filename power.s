@@ -7,6 +7,7 @@ output: .asciz "The number is %ld\n"
 .text #where the code is executed
 test
 test2
+test3
 .global main
 main:
 	#prologue
