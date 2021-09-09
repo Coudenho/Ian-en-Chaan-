@@ -5,7 +5,7 @@ format: .asciz "%ld"
 output: .asciz "The number is %ld\n"
 
 .text #where the code is executed
-
+test
 .global main
 main:
 	#prologue
