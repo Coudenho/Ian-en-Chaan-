@@ -1,8 +1,14 @@
+.data
+name: .asciz "Chaan \n"
 .text
+
 .global main
 main:
-	pushq %ebp
-	movq %esp, %ebp
+	push %rbp
+	mov  %rsp, %rbp
 
-	movq $1, %eax
-	int 0x80
+	movq $0, %rax
+	movq $name, %rdi
+	call printf
+	movl $1, %eax
+	int $0x80
