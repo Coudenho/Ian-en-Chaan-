@@ -1,14 +1,26 @@
 .data
-name: .asciz "Chaan \n"
+name: .asciz "Chaan %ld \n"
 .text
 
 .global main
 main:
-	push %rbp
-	mov  %rsp, %rbp
+	
+	pushq %rbp
+	movq  %rsp, %rbp
+	movq $6, 8(%rbp)
+    movq  8(%rbp), %rcx
 
-	movq $0, %rax
+
 	movq $name, %rdi
+	movq 8(%rbp), %rax
+	movq %rax, %rsi
+	movq $0, %rax
+	//call scanf 
 	call printf
+	                 
+
+	//movq %rbp, %rsp
+//popq %rbp
+//ret
 	movl $1, %eax
 	int $0x80
