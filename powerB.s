@@ -9,9 +9,9 @@ main:
    pushq %rbp               # prologue
    movq %rsp, %rbp
 
-    movq $0, %rax    
-	movq $enter, %rdi
-	call printf
+    movq $0, %rax           #Clear all vectors
+	movq $enter, %rdi   #move enter into rdi
+	call printf	    #print what is in rdi
 
     subq $16, %rsp          #reserve stack space
     leaq -16(%rbp), %rsi    #first input on -16rbp and store that adress in rsi
