@@ -32,23 +32,21 @@ main:
     call exit
 
     factorial:
-                 
-#    movq 16(%rbp), %rdi         #move  input to rdx
-    movq $1, %rax               #move 1 into rax, 
+        pushq %rbp
+        movq %rsp, %rbp
+        cmpq $1, %rdi
+        jl factorial_end
+            pushq %rdi
+            decq %rdi
+            call factorial
+            popq %rdi
+            mulq %rdi
+            ret
+        
+        
+        factorial_end:     
+            popq %rbp
+            movq %rbp, %rsp
+            ret
 
-execution:
-    pushq %rbp                  #prologue (new start of stack)
-    movq %rsp, %rbp             #prologue  
-    cmpq $1, %rsi  # check if the base has been multiplied with itself (exponent -1) times
-    je end             # if it has, end the loop
-    decq %rsi
-    call execution
-    imulq %rsi , %rax     #multiply rdx (which is the base) with rax (first time *1) and store it in rax
-    decq %rsi             #decrement the input with 1
-    movq %rbp, %rsp
-    popq %rbp    
-    call execution      # go back to the beginning of the loop 
-
-end:    movq %rax, %rdi        #move the result from rax into rdx
-    ret
-
+     
